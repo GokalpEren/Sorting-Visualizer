@@ -1,11 +1,59 @@
+body {
+    background-color: white; /* White background */
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center everything */
+}
+
+.visualizer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items inside the container */
+    justify-content: center; /* Center items vertically */
+}
+
 .array-container {
-  position: absolute;
-  left: 100px;
-  /* top: 100px; */
+    display: flex;
+    justify-content: center; /* Center bars horizontally */
+    align-items: flex-end; /* Align bars to the bottom */
+    width: 80%; /* Limit container width */
+    height: 60%; /* Fixed height */
+    border: 2px solid black; /* Rectangle border */
+    background-color: lightgray; /* Background color for visibility */
+    position: relative; /* Keeps the bars positioned inside */
+    overflow: hidden; /* Prevents overflow of bars */
 }
 
 .array-bar {
-  width: 2px;
-  display: inline-block;
-  margin: 0 1px;
+    width: 4px;
+    margin: 0 2px;
+    background-color: blue;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px; /* Space between container and buttons */
+}
+
+.controls-container {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Space between controls */
+    background-color: lightblue; /* Background for clarity */
+    border-bottom: 2px solid black; /* Separate visually from the bars */
+}
+
+.controls-container label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    gap: 10px;
 }
