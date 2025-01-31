@@ -1,7 +1,7 @@
 export function getMergeSortAnimations (array) {
     const animations = [];
     if (array.length <= 1) {
-        return array;
+        return animations;
     }
 
     //Shallow copy of array for merging

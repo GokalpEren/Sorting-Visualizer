@@ -1,5 +1,8 @@
 import React from 'react';
 import { getMergeSortAnimations } from '../SortingAlgorithms/mergeSort';
+import { getQuickSortAnimations } from '../SortingAlgorithms/quickSort';
+import { getHeapSortAnimations } from '../SortingAlgorithms/heapSort';
+import { getBubbleSortAnimations } from '../SortingAlgorithms/bubbleSort';
 import './SortingVisualizer.css'
 
 const BAR_COLOR = 'blue';
@@ -63,6 +66,114 @@ export default class SortingVisualizer extends React.Component {
         }
     }
 
+    quickSort() {
+        const { array, speed } = this.state;
+        const adjustedSpeed = (101 - speed) * 2;
+
+        if (!array || array.length === 0) {
+            console.error("Array is empty or undefined, cannot perform quickSort");
+            return;
+        }
+
+        const animations = getQuickSortAnimations(array);
+
+        for (let i = 0; i < animations.length; i++) {
+            const arrayBars = document.getElementsByClassName('array-bar');
+            const [barOneIdx, barTwoIdx] = animations[i];
+
+            const barOneStyle = arrayBars[barOneIdx].style;
+            const barTwoStyle = arrayBars[barTwoIdx].style;
+
+            setTimeout (() => {
+                barOneStyle.backgroundColor = SELECTED_COLOR;
+                barTwoStyle.backgroundColor = SELECTED_COLOR;
+            }, i * adjustedSpeed);
+
+            setTimeout (() => {
+                let temp = barOneStyle.height;
+                barOneStyle.height = barTwoStyle.height;
+                barTwoStyle.height = temp;
+            }, (i + 1) * adjustedSpeed);
+
+            setTimeout (() => {
+                barOneStyle.backgroundColor = BAR_COLOR;
+                barTwoStyle.backgroundColor = BAR_COLOR;
+            }, (i + 0.5) * adjustedSpeed);
+        }
+    }
+
+    heapSort () {
+        const { array, speed } = this.state;
+        const adjustedSpeed = (101 - speed) * 2;
+
+        if (!array || array.length === 0) {
+            console.error("Array is empty or undefined, cannot perform heapSort");
+            return;
+        }
+
+        const animations = getHeapSortAnimations(array);
+
+        for (let i = 0; i < animations.length; i++) {
+            const arrayBars = document.getElementsByClassName('array-bar');
+            const [barOneIdx, barTwoIdx] = animations[i];
+
+            const barOneStyle = arrayBars[barOneIdx].style;
+            const barTwoStyle = arrayBars[barTwoIdx].style;
+
+            setTimeout (() => {
+                barOneStyle.backgroundColor = SELECTED_COLOR;
+                barTwoStyle.backgroundColor = SELECTED_COLOR;
+            }, i * adjustedSpeed);
+
+            setTimeout (() => {
+                let temp = barOneStyle.height;
+                barOneStyle.height = barTwoStyle.height;
+                barTwoStyle.height = temp;
+            }, (i + 1) * adjustedSpeed);
+
+            setTimeout (() => {
+                barOneStyle.backgroundColor = BAR_COLOR;
+                barTwoStyle.backgroundColor = BAR_COLOR;
+            }, (i + 0.5) * adjustedSpeed);
+        }
+    }
+
+    bubbleSort () {
+        const { array, speed } = this.state;
+        const adjustedSpeed = (101 - speed);
+
+        if (!array || array.length === 0) {
+            console.error("Array is empty or undefined, cannot perform heapSort");
+            return;
+        }
+
+        const animations = getBubbleSortAnimations(array);
+
+        for (let i = 0; i < animations.length; i++) {
+            const arrayBars = document.getElementsByClassName('array-bar');
+            const [barOneIdx, barTwoIdx] = animations[i];
+
+            const barOneStyle = arrayBars[barOneIdx].style;
+            const barTwoStyle = arrayBars[barTwoIdx].style;
+
+            setTimeout (() => {
+                barOneStyle.backgroundColor = SELECTED_COLOR;
+                barTwoStyle.backgroundColor = SELECTED_COLOR;
+            }, i * adjustedSpeed);
+
+            setTimeout (() => {
+                let temp = barOneStyle.height;
+                barOneStyle.height = barTwoStyle.height;
+                barTwoStyle.height = temp;
+            }, (i + 1) * adjustedSpeed);
+
+            setTimeout (() => {
+                barOneStyle.backgroundColor = BAR_COLOR;
+                barTwoStyle.backgroundColor = BAR_COLOR;
+            }, (i + 0.5) * adjustedSpeed);
+        }
+    }
+
     setAnimationSpeed(value) {
         this.setState({ speed: parseInt(value) });
         console.log(`Animation speed set to: ${value}`);
@@ -120,7 +231,6 @@ export default class SortingVisualizer extends React.Component {
                     <button onClick={() => this.quickSort()}>Quick Sort</button>
                     <button onClick={() => this.heapSort()}>Heap Sort</button>
                     <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
-                    <button onClick={() => this.testSortingAlgorithms()}>Test Sorting Algorithms (BROKEN)</button>
                 </div>
             </div>
         );
